@@ -43,6 +43,11 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin"
+  ];
+  virtualisation.docker.logDriver = "json-file";
+
   services.k3s = {
     enable = true;
     role = "server";
