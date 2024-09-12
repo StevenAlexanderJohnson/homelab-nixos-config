@@ -85,16 +85,29 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  let
+    my-kubernetes-helm = with pkgs; wrapHelm kubernetes-helm {
+      plugins = with pkgs.kubernetes-helmPlugins; [
+	helm-secrets
+	helm-diff
+	helm-s3
+	helm-git
+      ];
+    };
+    my-helmfile = pkgs.helmfile-wrapped.override {
+      inherit (my-kubernetes-helm) pluginsDir;
+    };
+  in
+  {
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
     k3s
-    kubernetes-helm
-    helmfile
-#    cifs-utils
-#    nfs-utils
+    my-kubernetes-helm
+    my-helmfile
   ];
+  }
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
