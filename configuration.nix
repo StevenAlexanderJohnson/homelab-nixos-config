@@ -85,6 +85,7 @@
     wget
     git
     k3s
+    helm
 #    cifs-utils
 #    nfs-utils
   ];
