@@ -43,22 +43,23 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-#  services.k3s = {
-#    enable = true;
-#    role = "server";
-#    token = "2EjJWlC3MWD5Jis63KV6jSAUGzL4F";
-#    #tokenFile = /var/lib/rancher/k3s/server/token;
-#    extraFlags = toString([
-#      "--write-kubeconfig-mode \"0644\""
-#      "--cluster-init"
-#      "--disable servicelb"
-#      "--disable traefik"
-#      "--disable local-storage"
-#    ] ++ (if meta.hostname == "node1" then [] else [
-#	"--server https://192.168.0.233:6443"
-#    ]));
-#    clusterInit = (meta.hostname == "node1");
-#  };
+  services.k3s = {
+    enable = true;
+    role = "server";
+    token = "2EjJWlC3MWD5Jis63KV6jSAUGzL4F";
+    #tokenFile = /var/lib/rancher/k3s/server/token;
+    extraFlags = toString([
+      "--node-name ${meta.hostname}"
+      "--write-kubeconfig-mode \"0644\""
+      "--cluster-init"
+      "--disable servicelb"
+      "--disable traefik"
+      "--disable local-storage"
+    ] ++ (if meta.hostname == "node1" then [] else [
+	"--server https://192.168.0.233:6443"
+    ]));
+    clusterInit = (meta.hostname == "node1");
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
