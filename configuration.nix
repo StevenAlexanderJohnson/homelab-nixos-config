@@ -90,7 +90,7 @@
     wget
     git
     k3s
-    helm
+    kubernetes-helm
 #    cifs-utils
 #    nfs-utils
   ];
