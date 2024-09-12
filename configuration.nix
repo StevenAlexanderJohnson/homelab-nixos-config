@@ -91,6 +91,7 @@
     git
     k3s
     kubernetes-helm
+    helmfile
 #    cifs-utils
 #    nfs-utils
   ];
