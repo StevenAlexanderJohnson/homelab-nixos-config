@@ -78,6 +78,11 @@ in
     clusterInit = (meta.hostname == "node1");
   };
 
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2016-04.com.open-iscsi:${meta.hostname}";
+  };
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
