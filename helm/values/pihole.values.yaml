@@ -7,8 +7,12 @@ persistentVolumeClaim:
   size: 1Gi
 ingress:
   enabled: true
+  ingressClassName: nginx-internal
+  annotations:
+    kubernetes.io/ingress.class: nginx-internal
   hosts:
     - "pihole.home"
+  tls: []
 serviceWeb:
   loadBalancerIP: 192.168.0.240
   annotations:
