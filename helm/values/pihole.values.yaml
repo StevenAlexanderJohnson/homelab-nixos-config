@@ -7,7 +7,7 @@ persistentVolumeClaim:
   size: 1Gi
 ingress:
   enabled: true
-  ingressClassName: nginx
+  ingressClassName: nginx-internal
   hosts:
     - "pihole.home"
 serviceWeb:
