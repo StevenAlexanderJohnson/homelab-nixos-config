@@ -1,14 +1,14 @@
----
 persistentVolumeClaim:
-  enable: true
+  enabled: true
   storageClassName: longhorn
+  size: 1Gi
 serviceWeb:
-  loadBalancerIP: 192.168.1.250
+  loadBalancerIP: 192.168.1.200
   annotations:
     metallb.universe.tf/allow-shared-ip: pihole-svc
   type: LoadBalancer
 serviceDns:
-  loadBalancerIP: 192.168.1.250
+  loadBalancerIP: 192.168.1.200
   annotations:
     metallb.universe.tf/allow-shared-ip: pihole-svc
   type: LoadBalancer
