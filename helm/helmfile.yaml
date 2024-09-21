@@ -7,8 +7,22 @@ repositories:
     url: https://mojo2600.github.io/pihole-kubernetes/
   - name: ingress-nginx
     url: https://kubernetes.github.io/ingress-nginx
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: twuni
+    url: https://helm.twun.io
 ---
 releases:
+  - name: cert-manager-clusterissuer
+    namespace: cert-manager-system
+    chart: jetstack/cert-manager
+    version: 1.15.3
+    set:
+      - name: crds.enabled
+        value: true
+
   - name: longhorn
     namespace: longhorn-system
     chart: longhorn/longhorn
@@ -32,3 +46,17 @@ releases:
     version: 4.11.2
     values:
       - ./values/nginx-internal.values.yaml
+
+  - name: externaldns-pihole
+    namespace: pihole-system
+    chart: bitnami/external-dns
+    version: 8.0.1
+    values:
+      - ./values/externaldns.values.yaml
+
+  - name: docker-registry
+    namespace: docker-registry-system
+    chart: twuni/docker-registry
+    version: 2.2.3
+    values:
+      - ./values/docker-registry.values.yaml

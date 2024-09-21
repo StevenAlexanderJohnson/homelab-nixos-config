@@ -1,0 +1,24 @@
+persistence:
+  enabled: true
+  size: 2Gi
+  storageClass: longhorn
+ingress:
+  enabled: true
+  className: nginx-internal
+  hosts:
+    - "docker.registry"
+  annotations:
+    cert-manager.io/cluster-issuer: "my-ca-issuer"
+  tls:
+    - hosts:
+      - docker.registry
+      secretName: quickstart-example-tls
+  rules:
+    - host: docker.registry
+service:
+  type: LoadBalancer
+  loadBalancerIP: 192.168.0.242
+proxy:
+  username: dr
+  password: docker-server
+
