@@ -101,7 +101,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.sessionVariables = rec {
-    KUBECONFIG = "$HOME/.kube/config";
+    KUBECONFIG = "${HOME}/.kube/config";
   };
 
   # List packages installed in system profile. To search, run:
