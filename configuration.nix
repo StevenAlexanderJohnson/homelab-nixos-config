@@ -100,10 +100,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.sessionVariables = rec {
-    KUBECONFIG = "${HOME}/.kube/config";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
