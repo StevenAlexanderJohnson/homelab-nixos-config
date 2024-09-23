@@ -13,6 +13,8 @@ repositories:
     url: https://charts.jetstack.io
   - name: twuni
     url: https://helm.twun.io
+  - name: makeplane
+    url: https://helm.plane.so/
 ---
 releases:
   - name: cert-manager-clusterissuer
@@ -60,3 +62,10 @@ releases:
     version: 2.2.3
     values:
       - ./values/docker-registry.values.yaml
+
+  - name: plane-app
+    namespace: plane-app-system
+    chart: makeplane/plane-ce
+    version: 1.0.22
+    values:
+      - ./values/plane.values.yaml
