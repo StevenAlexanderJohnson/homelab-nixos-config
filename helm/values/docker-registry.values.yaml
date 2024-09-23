@@ -2,6 +2,7 @@ persistence:
   enabled: true
   size: 2Gi
   storageClass: longhorn
+  deleteEnabled: true
 ingress:
   enabled: true
   className: nginx-internal
@@ -9,6 +10,7 @@ ingress:
     - "docker.registry"
   annotations:
     cert-manager.io/cluster-issuer: "my-ca-issuer"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
   tls:
     - hosts:
       - docker.registry
