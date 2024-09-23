@@ -1,0 +1,12 @@
+planeVersion: stable
+ingress:
+  appHost: "plane.home"
+  ingressClass: nginx-internal
+postgres:
+  storageClass: longhorn
+redis:
+  storageClass: longhorn
+minio:
+  storageClass: longhorn
+env:
+  storageClass: longhorn
