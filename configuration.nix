@@ -73,7 +73,7 @@ in
       "--disable traefik"
       "--disable local-storage"
     ] ++ (if meta.hostname == "node1" then [] else [
-	"--server https://192.168.0.233:6443"
+	"--server https://192.168.0.100:6443"
     ]));
     clusterInit = (meta.hostname == "node1");
   };

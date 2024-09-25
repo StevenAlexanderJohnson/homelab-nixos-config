@@ -2,6 +2,8 @@ planeVersion: stable
 ingress:
   appHost: "plane.home"
   ingressClass: nginx-internal
+  ingress_annotations:
+    cert-manager.io/cluster-issuer: "my-ca-issuer"
 postgres:
   storageClass: longhorn
 redis:
