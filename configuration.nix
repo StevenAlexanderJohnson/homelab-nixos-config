@@ -60,23 +60,23 @@ in
   ];
   virtualisation.docker.logDriver = "json-file";
 
-  services.k3s = {
-    enable = true;
-    role = "server";
-    token = "2EjJWlC3MWD5Jis63KV6jSAUGzL4F";
-    #tokenFile = /var/lib/rancher/k3s/server/token;
-    extraFlags = toString([
-      "--node-name ${meta.hostname}"
-      "--write-kubeconfig-mode \"0644\""
-      "--cluster-init"
-      "--disable servicelb"
-      "--disable traefik"
-      "--disable local-storage"
-    ] ++ (if meta.hostname == "node1" then [] else [
-	"--server https://192.168.0.100:6443"
-    ]));
-    clusterInit = (meta.hostname == "node1");
-  };
+#  services.k3s = {
+#    enable = true;
+#    role = "server";
+#    token = "2EjJWlC3MWD5Jis63KV6jSAUGzL4F";
+#    #tokenFile = /var/lib/rancher/k3s/server/token;
+#    extraFlags = toString([
+#      "--node-name ${meta.hostname}"
+#      "--write-kubeconfig-mode \"0644\""
+#      "--cluster-init"
+#      "--disable servicelb"
+#      "--disable traefik"
+#      "--disable local-storage"
+#    ] ++ (if meta.hostname == "node1" then [] else [
+#	"--server https://192.168.0.100:6443"
+#    ]));
+#    clusterInit = (meta.hostname == "node1");
+#  };
 
   services.openiscsi = {
     enable = true;
@@ -107,7 +107,7 @@ in
     neofetch
     wget
     git
-    k3s
+    #k3s
     my-kubernetes-helm
     my-helmfile
   ];
