@@ -1,0 +1,26 @@
+image:
+  repository: ghcr.io/home-assistant/home-assistant
+  tag: "2025.6.0b5"
+service:
+  type: LoadBalancer
+  port: 8123
+persistance:
+  enabled: true
+  size: 5Gi
+  storageClass: "longhorn"
+ingress:
+  enabled: true
+  external: false
+  hosts:
+    - host: homeassistant.home
+      paths:
+        - paths: /
+          pathType: Prefix
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  tls:
+    - hosts:
+      - homeassistant.home
+      secretName: homeassistant-tls-secret
