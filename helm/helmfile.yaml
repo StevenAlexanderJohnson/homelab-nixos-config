@@ -15,6 +15,8 @@ repositories:
     url: https://helm.twun.io
   - name: makeplane
     url: https://helm.plane.so/
+  - name: pajikos
+    url: https://pajikos.github.io/home-assistant-helm-chart/
 ---
 releases:
   - name: cert-manager-clusterissuer
@@ -69,3 +71,10 @@ releases:
     version: 1.0.22
     values:
       - ./values/plane.values.yaml
+
+  - name: home-assistant
+    namespace: home-assistant-service
+    chart: pajikos/home-assistant
+    version: 0.3.4
+    values:
+      - ./values/home_assistant.values.yaml
